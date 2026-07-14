@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Francisco Varisco</title>
+    <meta
+      name="description"
+      content="Francisco Varisco's corner of the internet — AI systems, agents and opinions, built in Brisbane."
+    />
+    <meta name="theme-color" content="#b45309" />
+    <meta property="og:title" content="Francisco Varisco" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://franciscovarisco.com/" />
+    <meta
+      property="og:description"
+      content="Francisco Varisco's corner of the internet — AI systems, agents and opinions, built in Brisbane."
+    />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script>
+      // Apply saved theme before first paint to avoid a flash
+      ;(function () {
+        var theme = localStorage.getItem('theme')
+        if (theme === 'dark' || theme === 'light') {
+          document.documentElement.dataset.theme = theme
+        }
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
