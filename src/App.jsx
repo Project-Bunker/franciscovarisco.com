@@ -4,7 +4,8 @@ import { useState } from 'react'
 
 const nav = [
   { label: 'Now', href: '#now' },
-  { label: 'Experience', href: '#experience' },
+  { label: 'Work', href: '#work' },
+  { label: 'Side projects', href: '#side-projects' },
   { label: 'Life', href: '#life' },
   { label: 'Say hi', href: '#hi' },
 ]
@@ -27,7 +28,7 @@ const now = [
   },
 ]
 
-const experience = [
+const work = [
   {
     company: 'Askable Labs',
     logo: '/logos/askable-labs.png',
@@ -49,26 +50,6 @@ const experience = [
       'First engineer. Helped build a user research platform from an empty repo to a company of a hundred people across three continents — and now drive its AI transformation. Still shipping.',
   },
   {
-    company: 'Dogdate',
-    logo: '/logos/dogdate.svg',
-    roles: [{ title: 'Co-Founder', period: 'Feb 2021 — Jul 2025' }],
-    blurb:
-      'A social network that helps your dog make four-legged friends. One date at a time.',
-  },
-  {
-    company: 'Ridable',
-    logo: '/logos/ridable.svg',
-    roles: [{ title: 'Co-Founder', period: 'Jul 2020 — Jan 2025' }],
-    blurb:
-      'Your best e-bike choice in just a few seconds — without all the noise you don’t need.',
-  },
-  {
-    company: 'Glow',
-    logo: '/logos/glow.png',
-    roles: [{ title: 'CTO & Co-Founder', period: 'Feb 2023 — Jan 2024' }],
-    blurb: 'Give credit to your self-care.',
-  },
-  {
     company: 'Fupay',
     logo: '/logos/fupay.png',
     roles: [
@@ -83,18 +64,6 @@ const experience = [
     roles: [{ title: 'Mobile Web Developer', period: 'Jan 2015 — Jan 2019' }],
     blurb:
       'Built some of the agency’s biggest mobile projects and set its mobile development standards.',
-  },
-  {
-    company: 'LoopModules',
-    logo: '/logos/loopmodules.svg',
-    roles: [{ title: 'Co-Founder', period: 'Apr 2016 — Jan 2018' }],
-    blurb: 'The Hyperloop modules marketplace.',
-  },
-  {
-    company: 'React Central',
-    logo: '/logos/react-central.svg',
-    roles: [{ title: 'Co-Founder', period: 'Mar 2017 — Jun 2017' }],
-    blurb: 'A repository for React themes and components.',
   },
   {
     company: 'Yoom',
@@ -112,6 +81,36 @@ const experience = [
   },
 ]
 
+const sideProjects = [
+  {
+    company: 'Paradise Bunker',
+    logo: '/logos/paradise-bunker.png',
+    roles: [{ title: 'Creator', period: '2025 — present' }],
+    blurb:
+      'A local-first organisation of AI agents — named agents with jobs, reporting lines and scheduled workflows, running on local models. My live testbed for a world where systems are designed for agents first, humans second.',
+  },
+  {
+    company: 'Dogdate',
+    logo: '/logos/dogdate.png',
+    roles: [{ title: 'Co-Founder', period: 'Feb 2021 — Jul 2025' }],
+    blurb:
+      'A social network that helps your dog make four-legged friends. One date at a time.',
+  },
+  {
+    company: 'Ridable',
+    logo: '/logos/ridable.png',
+    roles: [{ title: 'Co-Founder', period: 'Jul 2020 — Jan 2025' }],
+    blurb:
+      'Your best e-bike choice in just a few seconds — without all the noise you don’t need.',
+  },
+  {
+    company: 'Glow',
+    logo: '/logos/glow.png',
+    roles: [{ title: 'CTO & Co-Founder', period: 'Feb 2023 — Jan 2024' }],
+    blurb: 'Give credit to your self-care.',
+  },
+]
+
 const life = [
   'Grew up in Brazil. Started out writing Python against Oracle databases; Brisbane has been home for years now.',
   'Two languages — English and Portuguese. Terse in both when it matters.',
@@ -122,6 +121,7 @@ const life = [
 const links = [
   { label: 'LinkedIn', handle: 'xicovarisco', href: 'https://linkedin.com/in/xicovarisco' },
   { label: 'GitHub', handle: 'xicovarisco', href: 'https://github.com/xicovarisco' },
+  { label: 'X', handle: 'franvarisco', href: 'https://x.com/franvarisco' },
 ]
 
 /* -------------------------------- components ------------------------------- */
@@ -159,6 +159,32 @@ function Section({ id, label, children }) {
   )
 }
 
+function ExperienceList({ items }) {
+  return (
+    <ol className="xp-list">
+      {items.map((x) => (
+        <li className="xp" key={x.company}>
+          <img className="xp-logo" src={x.logo} alt="" width="44" height="44" />
+          <div className="xp-body">
+            <div className="xp-company">
+              {x.href ? <a href={x.href}>{x.company}</a> : x.company}
+            </div>
+            <ul className="xp-roles">
+              {x.roles.map((r) => (
+                <li key={r.title}>
+                  <span className="xp-role">{r.title}</span>
+                  <span className="xp-period">{r.period}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="xp-blurb">{x.blurb}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  )
+}
+
 export default function App() {
   return (
     <div className="page">
@@ -166,7 +192,7 @@ export default function App() {
         <a className="wordmark" href="#top">
           I am
           <br />
-          Francisco
+          francisco
         </a>
         <nav className="nav">
           {nav.map((n) => (
@@ -206,33 +232,14 @@ export default function App() {
           </ul>
         </Section>
 
-        {/* ---------------------------- experience ----------------------------- */}
-        <Section id="experience" label="Experience">
-          <ol className="xp-list">
-            {experience.map((x) => (
-              <li className="xp" key={x.company}>
-                <img className="xp-logo" src={x.logo} alt="" width="44" height="44" />
-                <div className="xp-body">
-                  <div className="xp-company">
-                    {x.href ? (
-                      <a href={x.href}>{x.company}</a>
-                    ) : (
-                      x.company
-                    )}
-                  </div>
-                  <ul className="xp-roles">
-                    {x.roles.map((r) => (
-                      <li key={r.title}>
-                        <span className="xp-role">{r.title}</span>
-                        <span className="xp-period">{r.period}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <p className="xp-blurb">{x.blurb}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
+        {/* ------------------------------- work -------------------------------- */}
+        <Section id="work" label="Work">
+          <ExperienceList items={work} />
+        </Section>
+
+        {/* --------------------------- side projects ---------------------------- */}
+        <Section id="side-projects" label="Side projects">
+          <ExperienceList items={sideProjects} />
         </Section>
 
         {/* ------------------------------- life ------------------------------- */}
