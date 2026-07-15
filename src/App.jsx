@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 /* ---------------------------------- data ---------------------------------- */
 
 const nav = [
   { label: 'Now', href: '#now' },
-  { label: 'Work', href: '#work' },
+  { label: 'Experience', href: '#experience' },
   { label: 'Life', href: '#life' },
   { label: 'Say hi', href: '#hi' },
 ]
@@ -27,43 +27,88 @@ const now = [
   },
 ]
 
-const work = [
+const experience = [
   {
-    year: '2026',
-    name: 'Askable Labs',
-    tag: 'Post-training data',
+    company: 'Askable Labs',
+    logo: '/logos/askable-labs.png',
+    href: 'https://askablelabs.com',
+    roles: [{ title: 'VP Data', period: 'Jan 2026 — present' }],
     blurb:
-      'Expert work as training data. We capture how skilled humans actually think and operate, and turn it into the signal frontier models are missing.',
+      'The next generation of AI won’t be unlocked by more compute alone — it needs better human signal. I lead the team capturing multimodal expert work and refining it into the post-training data frontier labs use to push models past their current ceiling.',
   },
   {
-    year: '2025',
-    name: 'Paradise Bunker',
-    tag: 'Agents · local models',
-    blurb:
-      'An agent organisation, not a chatbot. Named agents with jobs, reporting lines and scheduled workflows, running on local models. My live testbed for a world where systems are designed for agents first, humans second.',
-  },
-  {
-    year: '2017',
-    name: 'Askable',
-    tag: 'Founding engineer → now',
-    blurb:
-      'Joined as the first engineer. Helped set the technical direction and build a user research platform from an empty repo to a company of a hundred people. Still shipping.',
+    company: 'Askable',
+    logo: '/logos/askable.png',
     href: 'https://askable.com',
+    roles: [
+      { title: 'Head of AI', period: 'Sep 2025 — present' },
+      { title: 'Founding Engineer', period: 'Nov 2017 — present' },
+      { title: 'Engineering Manager', period: 'May 2022 — Aug 2023' },
+    ],
+    blurb:
+      'First engineer. Helped build a user research platform from an empty repo to a company of a hundred people across three continents — and now drive its AI transformation. Still shipping.',
   },
   {
-    year: '2010s',
-    name: 'Five startups',
-    tag: 'Zero to one, five times',
+    company: 'Dogdate',
+    logo: '/logos/dogdate.svg',
+    roles: [{ title: 'Co-Founder', period: 'Feb 2021 — Jul 2025' }],
     blurb:
-      'Dogdate, Ridable, Glow, Yoom, LoopModules — co-founded them all. Some worked, some didn’t. Every one taught me more than a safe job would have.',
+      'A social network that helps your dog make four-legged friends. One date at a time.',
   },
   {
-    year: '∞',
-    name: 'Open source',
-    tag: 'Code',
+    company: 'Ridable',
+    logo: '/logos/ridable.svg',
+    roles: [{ title: 'Co-Founder', period: 'Jul 2020 — Jan 2025' }],
     blurb:
-      'Small tools shared freely — React components, React Native AR experiments, and whatever else escapes the lab.',
-    href: 'https://github.com/xicovarisco',
+      'Your best e-bike choice in just a few seconds — without all the noise you don’t need.',
+  },
+  {
+    company: 'Glow',
+    logo: '/logos/glow.png',
+    roles: [{ title: 'CTO & Co-Founder', period: 'Feb 2023 — Jan 2024' }],
+    blurb: 'Give credit to your self-care.',
+  },
+  {
+    company: 'Fupay',
+    logo: '/logos/fupay.png',
+    roles: [
+      { title: 'Software Engineering Manager', period: 'Apr 2021 — Apr 2022' },
+    ],
+    blurb:
+      'Fintech helping Gen Z and millennials manage cash-flow, buy now pay later responsibly, and find personalised rewards.',
+  },
+  {
+    company: 'Orange Digital',
+    logo: '/logos/orange-digital.png',
+    roles: [{ title: 'Mobile Web Developer', period: 'Jan 2015 — Jan 2019' }],
+    blurb:
+      'Built some of the agency’s biggest mobile projects and set its mobile development standards.',
+  },
+  {
+    company: 'LoopModules',
+    logo: '/logos/loopmodules.svg',
+    roles: [{ title: 'Co-Founder', period: 'Apr 2016 — Jan 2018' }],
+    blurb: 'The Hyperloop modules marketplace.',
+  },
+  {
+    company: 'React Central',
+    logo: '/logos/react-central.svg',
+    roles: [{ title: 'Co-Founder', period: 'Mar 2017 — Jun 2017' }],
+    blurb: 'A repository for React themes and components.',
+  },
+  {
+    company: 'Yoom',
+    logo: '/logos/yoom.svg',
+    roles: [{ title: 'Co-Founder', period: 'Mar 2013 — Jan 2016' }],
+    blurb:
+      'Digital product studio in the south of Brazil — mobile apps and innovative software.',
+  },
+  {
+    company: 'NL Informática',
+    logo: '/logos/nl-informatica.png',
+    roles: [{ title: 'Developer', period: 'Aug 2008 — Aug 2013' }],
+    blurb:
+      'Where it all started — Python against Oracle databases in Caxias do Sul, Brazil.',
   },
 ]
 
@@ -74,37 +119,12 @@ const life = [
   'Allergic to meetings, manual repetition, and justifying decisions to people who were never going to move.',
 ]
 
-const uses = ['Claude Code', 'llama.cpp', 'Obsidian', 'React', 'Vercel']
-
 const links = [
   { label: 'LinkedIn', handle: 'xicovarisco', href: 'https://linkedin.com/in/xicovarisco' },
   { label: 'GitHub', handle: 'xicovarisco', href: 'https://github.com/xicovarisco' },
 ]
 
 /* -------------------------------- components ------------------------------- */
-
-function BrisbaneClock() {
-  const fmt = () =>
-    new Intl.DateTimeFormat('en-AU', {
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: false,
-      timeZone: 'Australia/Brisbane',
-    }).format(new Date())
-
-  const [time, setTime] = useState(fmt)
-
-  useEffect(() => {
-    const id = setInterval(() => setTime(fmt()), 30_000)
-    return () => clearInterval(id)
-  }, [])
-
-  return (
-    <span className="clock" title="My local time">
-      Brisbane {time}
-    </span>
-  )
-}
 
 function ThemeToggle() {
   const [theme, setTheme] = useState(
@@ -144,7 +164,9 @@ export default function App() {
     <div className="page">
       <header className="header">
         <a className="wordmark" href="#top">
-          iamfrancisco
+          I am
+          <br />
+          Francisco
         </a>
         <nav className="nav">
           {nav.map((n) => (
@@ -153,10 +175,7 @@ export default function App() {
             </a>
           ))}
         </nav>
-        <div className="header-meta">
-          <BrisbaneClock />
-          <ThemeToggle />
-        </div>
+        <ThemeToggle />
       </header>
 
       <main id="top">
@@ -187,24 +206,29 @@ export default function App() {
           </ul>
         </Section>
 
-        {/* ------------------------------- work -------------------------------- */}
-        <Section id="work" label="Work">
-          <ol className="timeline">
-            {work.map((w) => (
-              <li className="entry" key={w.name}>
-                <span className="entry-year">{w.year}</span>
-                <div className="entry-body">
-                  <div className="entry-head">
-                    {w.href ? (
-                      <a href={w.href} className="entry-title">
-                        {w.name}
-                      </a>
+        {/* ---------------------------- experience ----------------------------- */}
+        <Section id="experience" label="Experience">
+          <ol className="xp-list">
+            {experience.map((x) => (
+              <li className="xp" key={x.company}>
+                <img className="xp-logo" src={x.logo} alt="" width="44" height="44" />
+                <div className="xp-body">
+                  <div className="xp-company">
+                    {x.href ? (
+                      <a href={x.href}>{x.company}</a>
                     ) : (
-                      <span className="entry-title">{w.name}</span>
+                      x.company
                     )}
-                    <span className="entry-tag">{w.tag}</span>
                   </div>
-                  <p className="entry-blurb">{w.blurb}</p>
+                  <ul className="xp-roles">
+                    {x.roles.map((r) => (
+                      <li key={r.title}>
+                        <span className="xp-role">{r.title}</span>
+                        <span className="xp-period">{r.period}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="xp-blurb">{x.blurb}</p>
                 </div>
               </li>
             ))}
@@ -218,15 +242,6 @@ export default function App() {
               <li key={item}>{item}</li>
             ))}
           </ul>
-          <p className="uses">
-            Daily tools:{' '}
-            {uses.map((u, i) => (
-              <span key={u}>
-                <span className="uses-item">{u}</span>
-                {i < uses.length - 1 && ' · '}
-              </span>
-            ))}
-          </p>
         </Section>
 
         {/* ------------------------------ say hi ------------------------------ */}
@@ -244,13 +259,7 @@ export default function App() {
       </main>
 
       <footer className="footer">
-        <p>
-          Designed and built in Brisbane. React on Vercel — no tracking, no
-          cookies. © {new Date().getFullYear()} Francisco Varisco ·{' '}
-          <a href="https://github.com/Project-Bunker/franciscovarisco.com">
-            view source
-          </a>
-        </p>
+        <p>Designed with ❤️ by Francisco</p>
       </footer>
     </div>
   )
