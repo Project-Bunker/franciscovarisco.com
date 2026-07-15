@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react'
 const nav = [
   { label: 'Now', href: '#now' },
   { label: 'Work', href: '#work' },
-  { label: 'Notes', href: '#notes' },
   { label: 'Life', href: '#life' },
   { label: 'Say hi', href: '#hi' },
 ]
@@ -68,29 +67,6 @@ const work = [
   },
 ]
 
-const notes = [
-  {
-    title: 'Agents don’t need better chat. They need a workplace.',
-    body:
-      'My thesis for 2026: agentic AI expands horizontally across teams, and the winners will design systems for agents first, humans second. Files, queues and cron beat another chat window.',
-  },
-  {
-    title: 'Model improvements are 10x, not 2x.',
-    body:
-      'If you plan for incremental gains you will be wrong in an expensive way. Build things that get dramatically better when the models do — and assume they will.',
-  },
-  {
-    title: 'Skip the course.',
-    body:
-      'Nobody learns AI in a classroom. Open the tool, hand it real work, watch where it fails, adjust. Daily contact with the frontier beats any certificate.',
-  },
-  {
-    title: 'Go where the frontier is.',
-    body:
-      'I flew to San Francisco for GTC and packed 37 meetings into a week — researchers, founders, people years ahead of me. The fastest way to get better is proximity to people who already are.',
-  },
-]
-
 const life = [
   'Grew up in Brazil. Started out writing Python against Oracle databases; Brisbane has been home for years now.',
   'Two languages — English and Portuguese. Terse in both when it matters.',
@@ -101,8 +77,8 @@ const life = [
 const uses = ['Claude Code', 'llama.cpp', 'Obsidian', 'React', 'Vercel']
 
 const links = [
-  { label: 'LinkedIn', href: 'https://linkedin.com/in/xicovarisco' },
-  { label: 'GitHub', href: 'https://github.com/xicovarisco' },
+  { label: 'LinkedIn', handle: 'xicovarisco', href: 'https://linkedin.com/in/xicovarisco' },
+  { label: 'GitHub', handle: 'xicovarisco', href: 'https://github.com/xicovarisco' },
 ]
 
 /* -------------------------------- components ------------------------------- */
@@ -132,14 +108,11 @@ function BrisbaneClock() {
 
 function ThemeToggle() {
   const [theme, setTheme] = useState(
-    () => document.documentElement.dataset.theme ?? 'auto',
+    () => document.documentElement.dataset.theme ?? 'light',
   )
 
   const toggle = () => {
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-    const current =
-      theme === 'auto' ? (prefersDark ? 'dark' : 'light') : theme
-    const next = current === 'dark' ? 'light' : 'dark'
+    const next = theme === 'dark' ? 'light' : 'dark'
     document.documentElement.dataset.theme = next
     localStorage.setItem('theme', next)
     setTheme(next)
@@ -149,10 +122,10 @@ function ThemeToggle() {
     <button
       className="theme-toggle"
       onClick={toggle}
-      aria-label="Toggle light and dark theme"
-      title="Toggle theme"
+      aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+      title={theme === 'dark' ? 'Light mode' : 'Dark mode'}
     >
-      ☀︎/☾
+      {theme === 'dark' ? '☀' : '☾'}
     </button>
   )
 }
@@ -171,7 +144,7 @@ export default function App() {
     <div className="page">
       <header className="header">
         <a className="wordmark" href="#top">
-          xico
+          iamfrancisco
         </a>
         <nav className="nav">
           {nav.map((n) => (
@@ -189,23 +162,16 @@ export default function App() {
       <main id="top">
         {/* ------------------------------- hero ------------------------------- */}
         <section className="hero">
-          <p className="hero-hello">G’day, I’m Xico 👋</p>
           <h1>
-            I build AI systems
-            <br />
-            that do real work.
+            Hey, I am <span className="hero-name">Francisco</span>. I build AI
+            systems that do real work — most people call me Xico.
           </h1>
-          <p className="hero-lead">
-            Francisco Varisco — twenty years of shipping software, from a
-            Python terminal in Brazil to leading AI and data at{' '}
-            <a href="https://askable.com">Askable</a> in Brisbane, where I was
-            the first engineer. I still write code, and I intend to keep it
-            that way.
-          </p>
           <p className="hero-sub">
-            This site is my corner of the internet — work, opinions and the
-            things I care about, with no algorithm deciding what you see. Make
-            yourself at home.
+            Twenty years of shipping software, from a Python terminal in Brazil
+            to leading AI and data at <a href="https://askable.com">Askable</a>{' '}
+            in Brisbane, where I was the first engineer. This site is my corner
+            of the internet — work, opinions and the things I care about, with
+            no algorithm deciding what you see. Make yourself at home.
           </p>
         </section>
 
@@ -231,7 +197,7 @@ export default function App() {
                   <div className="entry-head">
                     {w.href ? (
                       <a href={w.href} className="entry-title">
-                        {w.name} <span className="entry-arrow">↗</span>
+                        {w.name}
                       </a>
                     ) : (
                       <span className="entry-title">{w.name}</span>
@@ -243,22 +209,6 @@ export default function App() {
               </li>
             ))}
           </ol>
-        </Section>
-
-        {/* --------------------------- field notes ---------------------------- */}
-        <Section id="notes" label="Field notes">
-          <p className="section-intro">
-            Short, opinionated and subject to revision when the evidence
-            changes.
-          </p>
-          <div className="notes">
-            {notes.map((n) => (
-              <article className="note" key={n.title}>
-                <h3>{n.title}</h3>
-                <p>{n.body}</p>
-              </article>
-            ))}
-          </div>
         </Section>
 
         {/* ------------------------------- life ------------------------------- */}
@@ -281,20 +231,15 @@ export default function App() {
 
         {/* ------------------------------ say hi ------------------------------ */}
         <Section id="hi" label="Say hi">
-          <div className="postcard">
-            <p className="postcard-copy">
-              No newsletter, no funnel. If you’re building something
-              interesting — or you know something I don’t about agents,
-              post-training data or local models — I want to hear it.
-            </p>
-            <div className="postcard-links">
-              {links.map((l) => (
-                <a key={l.label} href={l.href} className="postcard-link">
-                  {l.label} ↗
-                </a>
-              ))}
-            </div>
-          </div>
+          <p className="hi-copy">don’t be a stranger :)</p>
+          <ul className="hi-links">
+            {links.map((l) => (
+              <li key={l.label}>
+                <span className="hi-label">{l.label}</span>
+                <a href={l.href}>@{l.handle}</a>
+              </li>
+            ))}
+          </ul>
         </Section>
       </main>
 
