@@ -1,0 +1,191 @@
+/**
+ * Paradise Bunker design tokens
+ * Source of truth: https://github.com/Project-Bunker/style-guide
+ * Light theme on :root, dark theme via [data-theme=dark].
+ * Fonts self-hosted in /public/fonts (all SIL OFL).
+ */
+
+@font-face {
+  font-family: "Figtree";
+  src: url(/fonts/figtree-variable-latin.woff2) format("woff2");
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Figtree";
+  src: url(/fonts/figtree-variable-italic-latin.woff2) format("woff2");
+  font-weight: 300 900;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Caveat";
+  src: url(/fonts/caveat-variable-latin.woff2) format("woff2");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Fira Mono";
+  src: url(/fonts/fira-mono-regular-latin.woff2) format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Fira Mono";
+  src: url(/fonts/fira-mono-bold-latin.woff2) format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* ---------- primitives: color scales ---------- */
+  --color-white: #fff;
+  --color-black: #000;
+
+  /* slate — cool grays (light theme) */
+  --color-slate-50: oklch(98.4% 0.003 247.858);
+  --color-slate-100: oklch(96.8% 0.007 247.896);
+  --color-slate-150: oklch(94.85% 0.01 251.7);
+  --color-slate-200: oklch(92.9% 0.013 255.508);
+  --color-slate-300: oklch(86.9% 0.022 252.894);
+  --color-slate-400: oklch(70.4% 0.04 256.788);
+  --color-slate-500: oklch(55.4% 0.046 257.417);
+  --color-slate-600: oklch(44.6% 0.043 257.281);
+  --color-slate-800: oklch(27.9% 0.041 260.031);
+  --color-slate-900: oklch(20.8% 0.042 265.755);
+
+  /* neutral — warm grays (dark theme) */
+  --color-neutral-100: oklch(97% 0.001 106.424);
+  --color-neutral-200: oklch(92.3% 0.003 48.717);
+  --color-neutral-300: oklch(86.9% 0.005 56.366);
+  --color-neutral-400: oklch(70.9% 0.01 56.259);
+  --color-neutral-500: oklch(55.3% 0.013 58.071);
+  --color-neutral-600: oklch(44.4% 0.011 73.639);
+  --color-neutral-700: oklch(37.4% 0.01 67.558);
+  --color-neutral-800: oklch(26.8% 0.007 34.298);
+  --color-neutral-900: oklch(21.6% 0.006 56.043);
+
+  /* accents */
+  --color-yellow-light: oklch(91% 0.13 92.5);
+  --color-yellow: oklch(85% 0.18 85.65);
+  --color-yellow-dark: oklch(55% 0.12 85.65);
+  --color-red-light: oklch(82% 0.1 22.5);
+  --color-red: oklch(73% 0.14 22.5);
+  --color-red-dark: oklch(43% 0.09 22.5);
+  --color-green-light: oklch(85% 0.1 155);
+  --color-green: oklch(75% 0.16 155);
+  --color-green-dark: oklch(45% 0.1 155);
+  --color-blue-light: oklch(82% 0.08 255.5);
+  --color-blue: oklch(70% 0.13 255.5);
+  --color-blue-dark: oklch(40% 0.08 255.5);
+  --color-lilac-light: oklch(90% 0.06 295);
+  --color-lilac: oklch(81% 0.11 295);
+  --color-lilac-dark: oklch(47% 0.05 295);
+
+  /* ---------- semantic colors: light theme ---------- */
+  --color-background: var(--color-slate-50);
+  --color-foreground: var(--color-slate-900);
+  --color-surface: var(--color-slate-100);
+  --color-surface-raised: var(--color-slate-150);
+  --color-surface-inverse: var(--color-slate-800);
+  --color-text-primary: var(--color-slate-900);
+  --color-text-secondary: var(--color-slate-500);
+  --color-text-muted: var(--color-slate-400);
+  --color-border: var(--color-slate-200);
+  --color-border-dark: var(--color-slate-300);
+  --color-border-darkest: var(--color-slate-600);
+
+  /* ---------- typography ---------- */
+  --font-sans: "Figtree", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-mono: "Fira Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-decorative: "Caveat", ui-sans-serif, system-ui, sans-serif;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+  --font-weight-black: 900;
+
+  /* fluid type scale */
+  --text-xs: 0.75rem;
+  --text-sm: clamp(0.83rem, 0.17vi + 0.79rem, 0.9rem);
+  --text-base: clamp(1rem, 0.32vi + 0.92rem, 1.13rem);
+  --text-md: clamp(1.2rem, 0.53vi + 1.07rem, 1.41rem);
+  --text-lg: clamp(1.44rem, 0.81vi + 1.24rem, 1.76rem);
+  --text-xl: clamp(1.73rem, 1.2vi + 1.43rem, 2.2rem);
+  --text-2xl: clamp(2.07rem, 1.73vi + 1.64rem, 2.75rem);
+  --text-3xl: clamp(2.49rem, 2.42vi + 1.88rem, 3.43rem);
+  --text-4xl: clamp(2.99rem, 3.35vi + 2.15rem, 4.29rem);
+
+  --leading-none: 1;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+
+  --tracking-wide: 0.025em;
+  --tracking-widest: 0.1em;
+
+  /* ---------- spacing & layout ---------- */
+  --spacing: 0.25rem;
+  --gap: 16px;
+  --columns: 12;
+  --max-width: 1024px;
+  --container-md: 28rem;
+  --container-2xl: 42rem;
+  --container-5xl: 64rem;
+
+  /* ---------- radii ---------- */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-3xl: 1.5rem;
+  --radius-4xl: 2rem;
+
+  /* ---------- motion ---------- */
+  --default-transition-duration: 0.15s;
+  --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-spring-subtle: linear(
+    0 0%, 0.0148 2%, 0.0537 4%, 0.1095 6%, 0.1762 8%, 0.2492 10%,
+    0.3249 12%, 0.4003 14%, 0.4735 16%, 0.543 18%, 0.608 20%,
+    0.6944 23%, 0.7684 26%, 0.8296 29%, 0.8791 32%, 0.9181 35%,
+    0.9481 38%, 0.9704 41%, 0.9865 44%, 0.9977 47%, 1.005 50%,
+    1.0094 53%, 1.0117 56%, 1.0125 60%, 1.012 63%, 1.0106 66%,
+    1.0087 71%, 1.0064 76%, 1.0044 81%, 1.0028 86%, 1.0016 91%,
+    1.0007 96%, 1.0004 100%
+  );
+  --ease-spring-playful: linear(
+    0 0%, 0.017 2%, 0.0641 4%, 0.1353 6%, 0.2247 8%, 0.3265 10%,
+    0.4356 12%, 0.5474 14%, 0.6576 16%, 0.7628 18%, 0.8604 20%,
+    0.9482 22%, 1.0247 24%, 1.0891 26%, 1.141 28%, 1.1806 30%,
+    1.2083 32%, 1.225 34%, 1.2318 37%, 1.2261 39%, 1.2054 42%,
+    1.1745 45%, 1.1377 48%, 1.0988 51%, 1.0612 54%, 1.0273 57%,
+    0.9986 60%, 0.9761 63%, 0.9602 66%, 0.9505 69%, 0.9464 72%,
+    0.947 75%, 0.9513 78%, 0.9581 81%, 0.9665 84%, 0.9755 87%,
+    0.9843 90%, 0.9924 93%, 0.9993 96%, 1.0047 99%, 1.0062 100%
+  );
+}
+
+/* ---------- semantic colors: dark theme (warm neutrals) ---------- */
+[data-theme="dark"] {
+  --color-background: var(--color-neutral-900);
+  --color-foreground: var(--color-neutral-100);
+  --color-surface: var(--color-neutral-800);
+  --color-surface-raised: var(--color-neutral-700);
+  --color-surface-inverse: var(--color-neutral-200);
+  --color-text-primary: var(--color-neutral-100);
+  --color-text-secondary: var(--color-neutral-400);
+  --color-text-muted: var(--color-neutral-500);
+  --color-border: var(--color-neutral-700);
+  --color-border-dark: var(--color-neutral-600);
+  --color-border-light: var(--color-neutral-800);
+}
