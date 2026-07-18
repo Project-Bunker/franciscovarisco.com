@@ -3,29 +3,10 @@ import { useState } from 'react'
 /* ---------------------------------- data ---------------------------------- */
 
 const nav = [
-  { label: 'Now', href: '#now' },
   { label: 'Work', href: '#work' },
   { label: 'Side projects', href: '#side-projects' },
   { label: 'Life', href: '#life' },
   { label: 'Say hi', href: '#hi' },
-]
-
-const now = [
-  {
-    role: 'VP Data · Askable Labs',
-    detail:
-      'I lead the team turning multimodal expert work into post-training data for frontier AI labs. Real people doing real work, captured end-to-end, refined into something a model can learn from.',
-  },
-  {
-    role: 'Head of AI · Askable',
-    detail:
-      'Rewiring how a hundred-person company operates with AI in the loop — tools, workflows and habits, not slideware.',
-  },
-  {
-    role: 'Paradise Bunker',
-    detail:
-      'Nights and weekends: a local-first organisation of AI agents — chief of staff, research analyst, coding lead — that runs my research and ops while I sleep.',
-  },
 ]
 
 const work = [
@@ -112,10 +93,36 @@ const sideProjects = [
 ]
 
 const life = [
-  'Grew up in Brazil. Started out writing Python against Oracle databases; Brisbane has been home for years now.',
-  'Two languages — English and Portuguese. Terse in both when it matters.',
-  'Eleven years volunteering with the Queensland Government, including the G20 in Brisbane.',
-  'Allergic to meetings, manual repetition, and justifying decisions to people who were never going to move.',
+  {
+    title: 'Lorem ipsum',
+    blurb:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.',
+    color: 'var(--color-yellow)',
+  },
+  {
+    title: 'Dolor sit amet',
+    blurb:
+      'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.',
+    color: 'var(--color-red)',
+  },
+  {
+    title: 'Consectetur',
+    blurb:
+      'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+    color: 'var(--color-green)',
+  },
+  {
+    title: 'Adipiscing elit',
+    blurb:
+      'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim.',
+    color: 'var(--color-blue)',
+  },
+  {
+    title: 'Sed do eiusmod',
+    blurb:
+      'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
+    color: 'var(--color-lilac)',
+  },
 ]
 
 const links = [
@@ -150,12 +157,35 @@ function ThemeToggle() {
   )
 }
 
-function Section({ id, label, children }) {
+function Section({ id, label, description, children }) {
   return (
     <section id={id} className="section">
-      <h2 className="section-label">{label}</h2>
+      <header className="section-header">
+        <h2 className="section-label">{label}</h2>
+        {description && <p className="section-desc">{description}</p>}
+      </header>
       {children}
     </section>
+  )
+}
+
+function CardScroller({ items }) {
+  return (
+    <ul className="card-scroller">
+      {items.map((c) => (
+        <li className="scroll-card" key={c.title}>
+          {c.img ? (
+            <img className="scroll-card-media" src={c.img} alt="" />
+          ) : (
+            <div className="scroll-card-media" style={{ background: c.color }} />
+          )}
+          <div className="scroll-card-body">
+            <h3 className="scroll-card-title">{c.title}</h3>
+            <p className="scroll-card-blurb">{c.blurb}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
   )
 }
 
@@ -190,9 +220,18 @@ export default function App() {
     <div className="page">
       <header className="header">
         <a className="wordmark" href="#top">
-          I am
-          <br />
-          francisco
+          <span className="wordmark-text">
+            I am
+            <br />
+            <span className="wordmark-name">francisco</span>
+          </span>
+          <img
+            className="wordmark-mark"
+            src="/logos/xico-mark.png"
+            alt=""
+            width="40"
+            height="40"
+          />
         </a>
         <nav className="nav">
           {nav.map((n) => (
@@ -220,40 +259,39 @@ export default function App() {
           </p>
         </section>
 
-        {/* ------------------------------- now -------------------------------- */}
-        <Section id="now" label="Now">
-          <ul className="now-list">
-            {now.map((n) => (
-              <li key={n.role}>
-                <span className="now-role">{n.role}</span>
-                <span className="now-detail">{n.detail}</span>
-              </li>
-            ))}
-          </ul>
-        </Section>
-
         {/* ------------------------------- work -------------------------------- */}
-        <Section id="work" label="Work">
+        <Section
+          id="work"
+          label="Work"
+          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+        >
           <ExperienceList items={work} />
         </Section>
 
         {/* --------------------------- side projects ---------------------------- */}
-        <Section id="side-projects" label="Side projects">
+        <Section
+          id="side-projects"
+          label="Side projects"
+          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+        >
           <ExperienceList items={sideProjects} />
         </Section>
 
         {/* ------------------------------- life ------------------------------- */}
-        <Section id="life" label="Beyond the terminal">
-          <ul className="life-list">
-            {life.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
+        <Section
+          id="life"
+          label="Beyond the terminal"
+          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        >
+          <CardScroller items={life} />
         </Section>
 
         {/* ------------------------------ say hi ------------------------------ */}
-        <Section id="hi" label="Say hi">
-          <p className="hi-copy">don’t be a stranger :)</p>
+        <Section
+          id="hi"
+          label="Say hi, don’t be a stranger"
+          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium."
+        >
           <ul className="hi-links">
             {links.map((l) => (
               <li key={l.label}>
