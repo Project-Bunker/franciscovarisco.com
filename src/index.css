@@ -84,7 +84,7 @@ a:hover {
   text-decoration: none;
 }
 
-.wordmark:hover .wordmark-text {
+.wordmark:hover .wordmark-name {
   box-shadow: inset 0 -0.35em 0 var(--accent-soft);
 }
 
@@ -182,6 +182,12 @@ a:hover {
   color: var(--color-text-secondary);
 }
 
+.flag {
+  font-size: 1.35em;
+  line-height: 1;
+  vertical-align: -0.12em;
+}
+
 /* ----------------------------------------------------------------- section */
 
 .section {
@@ -273,6 +279,52 @@ a:hover {
   margin-top: calc(var(--spacing) * 2);
   color: var(--color-text-secondary);
   font-size: 0.95em;
+}
+
+/* ---------------------------------------------------------------- showcase */
+
+.showcase {
+  margin-top: calc(var(--spacing) * 4);
+}
+
+.showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: calc(var(--spacing) * 2.5);
+}
+
+.showcase-frame {
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border);
+}
+
+.showcase-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s var(--ease-spring-playful);
+}
+
+.showcase-frame:hover .showcase-img {
+  transform: scale(1.06) rotate(-2deg);
+}
+
+.showcase-ig {
+  display: inline-block;
+  margin-top: calc(var(--spacing) * 3);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+}
+
+.showcase-ig:hover {
+  color: var(--color-text-primary);
+  border-bottom-color: var(--accent);
 }
 
 /* ----------------------------------------------------------- card scroller */
@@ -368,19 +420,42 @@ a:hover {
 .hi-links {
   list-style: none;
   display: flex;
-  flex-direction: column;
-  gap: calc(var(--spacing) * 2.5);
+  flex-wrap: wrap;
+  align-items: center;
+  gap: calc(var(--spacing) * 3);
+}
+
+.hi-links li {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--spacing) * 3);
 }
 
 .hi-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--spacing) * 1.5);
   font-weight: var(--font-weight-medium);
+  text-decoration: none;
+  transition: opacity var(--default-transition-duration) var(--ease-in-out);
 }
 
-.hi-label {
-  font-family: var(--font-mono);
-  font-size: var(--text-xs);
+.hi-links a:hover {
+  opacity: 0.7;
+}
+
+.hi-icon {
+  width: 1.05em;
+  height: 1.05em;
+}
+
+.hi-sep {
   color: var(--color-text-muted);
-  margin-right: calc(var(--spacing) * 2.5);
+}
+
+.hi-break {
+  flex-basis: 100%;
+  height: 0;
 }
 
 /* ------------------------------------------------------------------ footer */
@@ -403,7 +478,8 @@ a:hover {
   .xp-logo,
   .wordmark-mark,
   .scroll-card,
-  .scroll-card-arrow {
+  .scroll-card-arrow,
+  .showcase-img {
     transition: none;
   }
 }
