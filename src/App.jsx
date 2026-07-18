@@ -94,34 +94,26 @@ const sideProjects = [
 
 const life = [
   {
-    title: 'Lorem ipsum',
+    title: 'Go where the frontier is',
     blurb:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.',
-    color: 'var(--color-yellow)',
+      '2.5 weeks in San Francisco, the AI capital of the world — 37 in-person meetings, five meetups and GTC. Nobody knows where this is going, but the window for high-quality human data is wide open. Be the worst student in the class; it’s an evolution shortcut.',
+    img: '/cards/sf-golden-gate.jpg',
+    href: 'https://www.linkedin.com/feed/update/urn:li:activity:7442677309029052416/',
   },
   {
-    title: 'Dolor sit amet',
+    title: 'Always-on agents are the future',
     blurb:
-      'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.',
-    color: 'var(--color-red)',
+      'The beginning of Paradise Bunker — a Mac Studio running local models 24/7: a research assistant that delivers insights proactively, an investment agent, and a coding agent that ships while I sleep. The people building this infrastructure now will shape how work gets done.',
+    img: '/cards/paradise-bunker-start.jpg',
+    href: 'https://www.linkedin.com/feed/update/urn:li:activity:7463381520309743616/',
   },
   {
-    title: 'Consectetur',
+    title: 'Mentoring at HotHack',
     blurb:
-      'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-    color: 'var(--color-green)',
-  },
-  {
-    title: 'Adipiscing elit',
-    blurb:
-      'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim.',
-    color: 'var(--color-blue)',
-  },
-  {
-    title: 'Sed do eiusmod',
-    blurb:
-      'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.',
-    color: 'var(--color-lilac)',
+      'One of nine mentors at Brisbane’s HotHack hackathon, representing Askable and guiding five talented developers through a weekend of blockchain exploration and creative problem-solving — all the way to winning the competition.',
+    img: '/cards/hothack.jpg',
+    imgPos: 'center 18%',
+    href: 'https://www.linkedin.com/posts/xicovarisco_techevent-hackathon-mentoring-activity-7155042200718872576-iMJG/',
   },
 ]
 
@@ -172,19 +164,46 @@ function Section({ id, label, description, children }) {
 function CardScroller({ items }) {
   return (
     <ul className="card-scroller">
-      {items.map((c) => (
-        <li className="scroll-card" key={c.title}>
-          {c.img ? (
-            <img className="scroll-card-media" src={c.img} alt="" />
-          ) : (
-            <div className="scroll-card-media" style={{ background: c.color }} />
-          )}
-          <div className="scroll-card-body">
-            <h3 className="scroll-card-title">{c.title}</h3>
-            <p className="scroll-card-blurb">{c.blurb}</p>
-          </div>
-        </li>
-      ))}
+      {items.map((c) => {
+        const content = (
+          <>
+            {c.img ? (
+              <img
+                className="scroll-card-media"
+                src={c.img}
+                alt=""
+                style={c.imgPos ? { objectPosition: c.imgPos } : undefined}
+              />
+            ) : (
+              <div
+                className="scroll-card-media"
+                style={{ background: c.color }}
+              />
+            )}
+            {c.href && <span className="scroll-card-arrow">↗</span>}
+            <div className="scroll-card-body">
+              <h3 className="scroll-card-title">{c.title}</h3>
+              <p className="scroll-card-blurb">{c.blurb}</p>
+            </div>
+          </>
+        )
+        return (
+          <li className="scroll-card" key={c.title}>
+            {c.href ? (
+              <a
+                className="scroll-card-link"
+                href={c.href}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {content}
+              </a>
+            ) : (
+              content
+            )}
+          </li>
+        )
+      })}
     </ul>
   )
 }
@@ -247,8 +266,10 @@ export default function App() {
         {/* ------------------------------- hero ------------------------------- */}
         <section className="hero">
           <h1>
-            Hey, I am <span className="hero-name">Francisco</span>. I build AI
-            systems that do real work — most people call me Xico.
+            Hey, I’m <span className="hero-name">Francisco</span>, but most
+            people call me San Fran (and I like it).
+            <br />
+            I build cool shit
           </h1>
           <p className="hero-sub">
             Twenty years of shipping software, from a Python terminal in Brazil
