@@ -1,10 +1,27 @@
 ---
+import { getCollection } from 'astro:content'
 import BaseLayout from '../layouts/BaseLayout.astro'
 import Section from '../components/Section.astro'
 import ExperienceList from '../components/ExperienceList.astro'
 import CardScroller from '../components/CardScroller.astro'
 import Icon from '../components/Icon.astro'
 import { work, sideProjects, life, links } from '../data/site.js'
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate - a.data.pubDate,
+)
+
+// Blog posts join the curated life cards; the life entries carry no dates,
+// so posts (newest first) lead the scroller.
+const lifeFeed = [
+  ...posts.map((post) => ({
+    title: post.data.title,
+    blurb: post.data.description,
+    img: post.data.image,
+    href: `/writing/${post.id}/`,
+  })),
+  ...life,
+]
 ---
 
 <BaseLayout>
@@ -52,7 +69,7 @@ import { work, sideProjects, life, links } from '../data/site.js'
     label="Beyond the terminal"
     description="Life is a collection of moments that happen beyond a screen. Experiences shape who we are and take us to places we never dreamed of. Here are some of mine."
   >
-    <CardScroller items={life} />
+    <CardScroller items={lifeFeed} />
   </Section>
 
   <!-- ------------------------------ say hi ------------------------------ -->

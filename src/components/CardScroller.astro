@@ -1,5 +1,7 @@
 ---
 const { items } = Astro.props
+
+const isExternal = (href) => /^https?:\/\//.test(href)
 ---
 
 <ul class="card-scroller">
@@ -17,7 +19,9 @@ const { items } = Astro.props
           ) : (
             <div class="scroll-card-media" style={{ background: c.color }} />
           )}
-          {c.href && <span class="scroll-card-arrow">↗</span>}
+          {c.href && isExternal(c.href) && (
+            <span class="scroll-card-arrow">↗</span>
+          )}
           <div class="scroll-card-body">
             <h3 class="scroll-card-title">{c.title}</h3>
             <p class="scroll-card-blurb">{c.blurb}</p>
@@ -27,7 +31,14 @@ const { items } = Astro.props
       return (
         <li class="scroll-card">
           {c.href ? (
-            <a class="scroll-card-link" href={c.href} target="_blank" rel="noreferrer">
+            <a
+              class="scroll-card-link"
+              href={c.href}
+              {...(isExternal(c.href) && {
+                target: '_blank',
+                rel: 'noreferrer',
+              })}
+            >
               {content}
             </a>
           ) : (

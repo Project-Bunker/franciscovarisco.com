@@ -2,6 +2,7 @@
 title: 'Hello, world (again)'
 description: 'This site now has a writing section: markdown in, static HTML out, no algorithm in between.'
 pubDate: 2026-07-20
+image: '/og.jpg'
 ---
 
 For years this site was a single page. Now it can hold words too.
@@ -19,6 +20,7 @@ A post is just a file with a small header:
 title: 'A title'
 description: 'One sentence for search engines and link previews.'
 pubDate: 2026-07-20
+image: '/cards/a-cover-image.jpg'
 ---
 
 The words go here.
