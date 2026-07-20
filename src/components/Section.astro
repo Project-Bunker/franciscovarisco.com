@@ -1,0 +1,11 @@
+---
+const { id, label, description } = Astro.props
+---
+
+<section id={id} class="section">
+  <header class="section-header">
+    <h2 class="section-label">{label}</h2>
+    {description && <p class="section-desc">{description}</p>}
+  </header>
+  <slot />
+</section>

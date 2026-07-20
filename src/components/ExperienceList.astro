@@ -1,0 +1,30 @@
+---
+import Showcase from './Showcase.astro'
+
+const { items } = Astro.props
+---
+
+<ol class="xp-list">
+  {
+    items.map((x) => (
+      <li class="xp">
+        <img class="xp-logo" src={x.logo} alt="" width="44" height="44" />
+        <div class="xp-body">
+          <div class="xp-company">
+            {x.href ? <a href={x.href}>{x.company}</a> : x.company}
+          </div>
+          <ul class="xp-roles">
+            {x.roles.map((r) => (
+              <li>
+                <span class="xp-role">{r.title}</span>
+                <span class="xp-period">{r.period}</span>
+              </li>
+            ))}
+          </ul>
+          <p class="xp-blurb">{x.blurb}</p>
+          {x.showcase && <Showcase data={x.showcase} />}
+        </div>
+      </li>
+    ))
+  }
+</ol>
