@@ -19,8 +19,16 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
     label="Writing"
     description="Long-form thoughts on AI, agents and building things. Written by me, delivered by no algorithm."
   >
-    <ul class="post-list">
-      {posts.map((post) => <PostCard post={post} />)}
-    </ul>
+    {
+      posts.length > 0 ? (
+        <ul class="post-list">
+          {posts.map((post) => (
+            <PostCard post={post} />
+          ))}
+        </ul>
+      ) : (
+        <p class="section-desc">Nothing here yet — first post coming soon.</p>
+      )
+    }
   </Section>
 </BaseLayout>
