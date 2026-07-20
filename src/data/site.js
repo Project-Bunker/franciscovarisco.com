@@ -7,7 +7,7 @@ export const nav = [
   { label: 'Work', href: '/#work' },
   { label: 'Side projects', href: '/#side-projects' },
   { label: 'Life', href: '/#life' },
-  { label: 'Writing', href: '/writing' },
+  { label: 'Writing', href: '/blog' },
   { label: 'Say hi', href: '/#hi' },
 ]
 
