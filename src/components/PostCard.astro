@@ -1,0 +1,21 @@
+---
+const { post } = Astro.props
+const { title, description, pubDate, image } = post.data
+
+const formattedDate = pubDate.toLocaleDateString('en-AU', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+})
+---
+
+<li class="post-card">
+  <a class="post-card-link" href={`/blog/${post.id}/`}>
+    <img class="post-card-img" src={image} alt="" loading="lazy" />
+    <h3 class="post-card-title">{title}</h3>
+    <time class="post-card-date" datetime={pubDate.toISOString()}>
+      {formattedDate}
+    </time>
+    <p class="post-card-desc">{description}</p>
+  </a>
+</li>

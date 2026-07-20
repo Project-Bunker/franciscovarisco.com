@@ -1,0 +1,10 @@
+---
+import { ICONS } from '../data/site.js'
+
+const { icon } = Astro.props
+const { viewBox, d } = ICONS[icon]
+---
+
+<svg class="hi-icon" viewBox={viewBox} aria-hidden="true">
+  <path d={d} fill="currentColor"></path>
+</svg>

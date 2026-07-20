@@ -1,0 +1,22 @@
+---
+const { data } = Astro.props
+---
+
+<div class="showcase">
+  <div class="showcase-grid">
+    {
+      data.images.map((src) => (
+        <div class="showcase-frame">
+          <img class="showcase-img" src={src} alt="" loading="lazy" />
+        </div>
+      ))
+    }
+  </div>
+  {
+    data.instagram && (
+      <a class="showcase-ig" href={data.instagram} target="_blank" rel="noreferrer">
+        {data.handle} ↗
+      </a>
+    )
+  }
+</div>

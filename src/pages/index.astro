@@ -1,0 +1,107 @@
+---
+import { getCollection } from 'astro:content'
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Section from '../components/Section.astro'
+import ExperienceList from '../components/ExperienceList.astro'
+import CardScroller from '../components/CardScroller.astro'
+import Icon from '../components/Icon.astro'
+import { work, sideProjects, life, links } from '../data/site.js'
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate - a.data.pubDate,
+)
+
+// Blog posts join the curated life cards; the life entries carry no dates,
+// so posts (newest first) lead the scroller.
+const lifeFeed = [
+  ...posts.map((post) => ({
+    title: post.data.title,
+    blurb: post.data.description,
+    img: post.data.image,
+    href: `/blog/${post.id}/`,
+  })),
+  ...life,
+]
+---
+
+<BaseLayout>
+  <!-- ------------------------------- hero ------------------------------- -->
+  <section class="hero">
+    <h1>
+      Hey, I’m <span class="hero-name">Francisco</span>, but most people call
+      me San Fran (and I like it)
+    </h1>
+    <p class="hero-sub">
+      Brazilian <span class="flag">🇧🇷</span> by birth, Australian
+      <span class="flag">🇦🇺</span> by choice. I love bringing ambitious ideas to
+      life: experimenting, building quickly and learning by doing (and by making
+      mistakes). Today that means one of the hardest problems in AI, capturing
+      what real experts actually do so models train on genuine human signal.
+    </p>
+    <p class="hero-sub">
+      The best things I’ve built came from curious, passionate people 🤌. This
+      site is my corner of the internet: work, opinions and the things I care
+      about, with no algorithm deciding what you see.
+    </p>
+  </section>
+
+  <!-- ------------------------------- work -------------------------------- -->
+  <Section
+    id="work"
+    label="Work"
+    description="Work is what pays our dreams. Twenty years of it so far: five startups, a platform built from an empty repo, and still shipping."
+  >
+    <ExperienceList items={work} />
+  </Section>
+
+  <!-- --------------------------- side projects ---------------------------- -->
+  <Section
+    id="side-projects"
+    label="Side projects"
+    description="Normal hours build normal things. These were built on nights, weekends and stubborn curiosity, going further than anyone asked. More to come."
+  >
+    <ExperienceList items={sideProjects} />
+  </Section>
+
+  <!-- ------------------------------- life ------------------------------- -->
+  <Section
+    id="life"
+    label="Beyond the terminal"
+    description="Life is a collection of moments that happen beyond a screen. Experiences shape who we are and take us to places we never dreamed of. Here are some of mine."
+  >
+    <CardScroller items={lifeFeed} />
+  </Section>
+
+  <!-- ------------------------------ say hi ------------------------------ -->
+  <Section
+    id="hi"
+    label="Say hi, don’t be a stranger"
+    description="Life is about connections. In person, online, over a cup of coffee or even at a pub for a beer. Let's meet"
+  >
+    <ul class="hi-links">
+      {
+        links.map((l, i) => (
+          <>
+            <li>
+              <a
+                href={l.href}
+                title={l.label}
+                {...(!l.href.startsWith('mailto:') && {
+                  target: '_blank',
+                  rel: 'noreferrer',
+                })}
+              >
+                <Icon icon={l.icon} />
+                {l.text}
+              </a>
+              {i < links.length - 1 && !l.breakAfter && (
+                <span class="hi-sep">•</span>
+              )}
+            </li>
+            {l.breakAfter && <li class="hi-break" aria-hidden="true" />}
+          </>
+        ))
+      }
+    </ul>
+  </Section>
+</BaseLayout>
