@@ -1,15 +1,13 @@
 ---
-import { getCollection } from 'astro:content'
 import BaseLayout from '../layouts/BaseLayout.astro'
 import Section from '../components/Section.astro'
 import ExperienceList from '../components/ExperienceList.astro'
 import CardScroller from '../components/CardScroller.astro'
 import Icon from '../components/Icon.astro'
 import { work, sideProjects, life, links } from '../data/site.js'
+import { getPublishedPosts } from '../data/posts.js'
 
-const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
-  (a, b) => b.data.pubDate - a.data.pubDate,
-)
+const posts = await getPublishedPosts()
 
 // Blog posts join the curated life cards; the life entries carry no dates,
 // so posts (newest first) lead the scroller.
