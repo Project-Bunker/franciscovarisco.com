@@ -11,7 +11,7 @@ export const nav = [
   { label: 'Life', href: '/#life' },
   { label: 'Work', href: '/#work' },
   { label: 'Side projects', href: '/#side-projects' },
-  { label: 'Writing', href: '/blog' },
+  { label: 'Blog', href: '/blog' },
   { label: 'Say hi', href: '/#hi' },
 ]
 

@@ -3,7 +3,7 @@ title: 'Don’t code yourself a website'
 description: 'An afternoon from empty repo to the page you’re reading, built by describing what I wanted and letting AI do the typing.'
 pubDate: 2026-07-23
 image: '/og.jpg'
-draft: true
+draft: false
 ---
 
 This website exists, and I didn’t type the code.
