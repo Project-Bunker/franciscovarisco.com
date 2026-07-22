@@ -1,6 +1,7 @@
 ---
 import { render } from 'astro:content'
 import BaseLayout from '../../layouts/BaseLayout.astro'
+import NewsletterSignup from '../../components/NewsletterSignup.astro'
 import { getPublishedPosts } from '../../data/posts.js'
 import '../../styles/prose.css'
 
@@ -42,6 +43,6 @@ const formattedDate = pubDate.toLocaleDateString('en-AU', {
     <div class="prose">
       <Content />
     </div>
-    <p class="post-back"><a href="/blog/">← All writing</a></p>
+    <NewsletterSignup heading="Enjoyed this? Get the next one by email" />
   </article>
 </BaseLayout>

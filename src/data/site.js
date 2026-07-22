@@ -3,10 +3,14 @@ export const siteTitle = 'Francisco Varisco'
 export const siteDescription =
   "Francisco's corner of the internet: AI systems, agents and opinions"
 
+export const newsletter = {
+  buttondownUser: 'xicovarisco',
+}
+
 export const nav = [
+  { label: 'Life', href: '/#life' },
   { label: 'Work', href: '/#work' },
   { label: 'Side projects', href: '/#side-projects' },
-  { label: 'Life', href: '/#life' },
   { label: 'Writing', href: '/blog' },
   { label: 'Say hi', href: '/#hi' },
 ]
