@@ -1,22 +1,20 @@
 ---
-import { getCollection } from 'astro:content'
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import Section from '../../components/Section.astro'
 import PostCard from '../../components/PostCard.astro'
+import { getPublishedPosts } from '../../data/posts.js'
 import '../../styles/prose.css'
 
-const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
-  (a, b) => b.data.pubDate - a.data.pubDate,
-)
+const posts = await getPublishedPosts()
 ---
 
 <BaseLayout
-  title="Writing — Francisco Varisco"
+  title="Blog — Francisco Varisco"
   description="Long-form thoughts on AI, agents and building things — written by me, delivered by no algorithm."
 >
   <Section
     id="writing"
-    label="Writing"
+    label="Blog"
     description="Long-form thoughts on AI, agents and building things. Written by me, delivered by no algorithm."
   >
     {

@@ -1,15 +1,13 @@
 ---
-import { getCollection } from 'astro:content'
 import BaseLayout from '../layouts/BaseLayout.astro'
 import Section from '../components/Section.astro'
 import ExperienceList from '../components/ExperienceList.astro'
 import CardScroller from '../components/CardScroller.astro'
 import Icon from '../components/Icon.astro'
 import { work, sideProjects, life, links } from '../data/site.js'
+import { getPublishedPosts } from '../data/posts.js'
 
-const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
-  (a, b) => b.data.pubDate - a.data.pubDate,
-)
+const posts = await getPublishedPosts()
 
 // Blog posts join the curated life cards; the life entries carry no dates,
 // so posts (newest first) lead the scroller.
@@ -45,6 +43,15 @@ const lifeFeed = [
     </p>
   </section>
 
+  <!-- ------------------------------- life ------------------------------- -->
+  <Section
+    id="life"
+    label="Life"
+    description="Life is a collection of moments that happen beyond a screen. Experiences shape who we are and take us to places we never dreamed of. I love the journey, and this is where I track it along the way."
+  >
+    <CardScroller items={lifeFeed} />
+  </Section>
+
   <!-- ------------------------------- work -------------------------------- -->
   <Section
     id="work"
@@ -61,15 +68,6 @@ const lifeFeed = [
     description="Normal hours build normal things. These were built on nights, weekends and stubborn curiosity, going further than anyone asked. More to come."
   >
     <ExperienceList items={sideProjects} />
-  </Section>
-
-  <!-- ------------------------------- life ------------------------------- -->
-  <Section
-    id="life"
-    label="Beyond the terminal"
-    description="Life is a collection of moments that happen beyond a screen. Experiences shape who we are and take us to places we never dreamed of. Here are some of mine."
-  >
-    <CardScroller items={lifeFeed} />
   </Section>
 
   <!-- ------------------------------ say hi ------------------------------ -->

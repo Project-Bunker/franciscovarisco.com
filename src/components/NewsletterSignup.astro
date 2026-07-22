@@ -1,0 +1,139 @@
+---
+import { newsletter } from '../data/site.js'
+
+const {
+  username = newsletter.buttondownUser,
+  heading = 'Get new posts by email',
+  blurb = 'Occasional long-form thoughts on AI, agents and building things. Delivered by me, not an algorithm.',
+} = Astro.props
+
+const action = `https://buttondown.com/api/emails/embed-subscribe/${username}`
+---
+
+<section class="newsletter" aria-labelledby="newsletter-heading">
+  <div class="newsletter-text">
+    <h2 class="newsletter-heading" id="newsletter-heading">{heading}</h2>
+    <p class="newsletter-blurb">{blurb}</p>
+  </div>
+  <form class="newsletter-form" action={action} method="post" target="_blank">
+    <label class="newsletter-label" for="newsletter-email">Email address</label>
+    <div class="newsletter-row">
+      <input
+        class="newsletter-input"
+        id="newsletter-email"
+        type="email"
+        name="email"
+        placeholder="you@example.com"
+        autocomplete="email"
+        required
+      />
+      <button class="newsletter-button" type="submit">Subscribe</button>
+    </div>
+    <p class="newsletter-note">No spam. Unsubscribe anytime.</p>
+  </form>
+</section>
+
+<style>
+  .newsletter {
+    margin-top: calc(var(--spacing) * 12);
+    padding: calc(var(--spacing) * 7);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-2xl);
+    background: var(--color-surface);
+    display: grid;
+    gap: calc(var(--spacing) * 5);
+  }
+
+  .newsletter-heading {
+    margin: 0;
+    font-size: var(--text-md);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.01em;
+    color: var(--color-text-primary);
+  }
+
+  .newsletter-blurb {
+    margin: calc(var(--spacing) * 2) 0 0;
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+    color: var(--color-text-secondary);
+  }
+
+  .newsletter-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .newsletter-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: calc(var(--spacing) * 3);
+  }
+
+  .newsletter-input {
+    flex: 1 1 14rem;
+    min-width: 0;
+    padding: calc(var(--spacing) * 3) calc(var(--spacing) * 4);
+    font: inherit;
+    font-size: var(--text-base);
+    color: var(--color-text-primary);
+    background: var(--color-background);
+    border: 1px solid var(--color-border-dark);
+    border-radius: var(--radius-lg);
+    transition: border-color var(--default-transition-duration)
+      var(--ease-in-out);
+  }
+
+  .newsletter-input::placeholder {
+    color: var(--color-text-muted);
+  }
+
+  .newsletter-input:focus-visible {
+    outline: 2px solid var(--color-yellow);
+    outline-offset: 1px;
+    border-color: var(--color-yellow);
+  }
+
+  .newsletter-button {
+    flex: 0 0 auto;
+    padding: calc(var(--spacing) * 3) calc(var(--spacing) * 6);
+    font: inherit;
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-black);
+    background: var(--color-yellow);
+    border: 1px solid var(--color-yellow);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: opacity var(--default-transition-duration) var(--ease-in-out);
+  }
+
+  .newsletter-button:hover {
+    opacity: 0.85;
+  }
+
+  .newsletter-button:focus-visible {
+    outline: 2px solid var(--color-yellow-dark);
+    outline-offset: 2px;
+  }
+
+  .newsletter-note {
+    margin: calc(var(--spacing) * 3) 0 0;
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .newsletter-input,
+    .newsletter-button {
+      transition: none;
+    }
+  }
+</style>
