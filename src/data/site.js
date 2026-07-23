@@ -150,7 +150,7 @@ export const life = [
     href: 'https://www.linkedin.com/feed/update/urn:li:activity:7463381520309743616/',
   },
   {
-    title: 'Askable at UXDX Dublin',
+    title: 'UXDX in Dublin',
     blurb:
       'Crossed the world with the Askable team for UXDX in Dublin — booth, espresso machine and all. Conferences are a source of inspiration and new ideas, and nothing beats meeting the people you build for face to face.',
     img: '/cards/uxdx-dublin.jpg',
