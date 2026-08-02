@@ -3,7 +3,7 @@ title: 'Build the factory first'
 description: 'A Mac Studio, an open-source agent and a month of commits. What a coding lab at home actually gives you, and what it still costs to set one up.'
 pubDate: 2026-08-02
 image: '/cards/coding-lab-commits.png'
-draft: true
+draft: false
 ---
 
 Six months of my GitHub look like nothing much. Then July.
