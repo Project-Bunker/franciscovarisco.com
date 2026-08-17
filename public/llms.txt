@@ -1,0 +1,22 @@
+# Francisco Varisco
+
+> Francisco Varisco is a Brazilian-born, Australia-based technologist with 20 years of experience across five startups. He is the founder of MOAT Studio, an AI consultancy in Brisbane, and a Member of Technical Staff at Askable Labs, building human data to power the next generation of AI models.
+
+Francisco (also known as Xico) writes about AI systems, agents, and the infrastructure of working with them — including running always-on local agents and coding labs at home. Previous roles include Head of AI and founding engineer at Askable, engineering manager at Fupay, and co-founder of Yoom.
+
+## Site
+
+- [Homepage](https://franciscovarisco.com/): bio, work history, side projects, and contact links
+- [Blog](https://franciscovarisco.com/blog): writing on AI systems, agents, and opinions
+
+## Writing
+
+- [Humans came second](https://franciscovarisco.com/blog/humans-came-second/): what running a first voice eval taught him about synthetic speech, human judgement, and the data models still need
+- [Build the factory first](https://franciscovarisco.com/blog/build-the-factory-first/): what a coding lab at home actually gives you, and what it costs to set one up
+- [Don't code yourself a website](https://franciscovarisco.com/blog/how-i-built-this-website/): from empty repo to a live site in an afternoon, built by describing what he wanted
+
+## Contact
+
+- [Email](mailto:me@franciscovarisco.com): me@franciscovarisco.com
+- [LinkedIn](https://linkedin.com/in/xicovarisco): @xicovarisco
+- [MOAT Studio](https://moatstudio.ai/): Francisco's AI consultancy
