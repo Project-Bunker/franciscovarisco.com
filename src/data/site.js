@@ -17,6 +17,14 @@ export const nav = [
 
 export const work = [
   {
+    company: 'MOAT Studio',
+    logo: '/logos/moat-studio.svg',
+    href: 'https://moatstudio.ai',
+    roles: [{ title: 'Founder', period: 'Aug 2026 – present' }],
+    blurb:
+      'Helping expert-led businesses find where AI creates real value, then build it into how they work, turning that capability into a moat they own.',
+  },
+  {
     company: 'Askable Labs',
     logo: '/logos/askable-labs.png',
     href: 'https://askablelabs.com',
@@ -31,7 +39,7 @@ export const work = [
     roles: [
       {
         title: 'Head of AI | Ex-Engineering Manager | Founding Engineer',
-        period: '2017 – present',
+        period: 'Nov 2017 – present',
       },
     ],
     blurb:
@@ -70,9 +78,9 @@ export const work = [
 
 export const sideProjects = [
   {
-    company: 'Paradise AI',
+    company: 'Paradise Bunker',
     logo: '/logos/paradise-bunker.png',
-    roles: [{ title: 'Founder', period: '2026 – present' }],
+    roles: [{ title: 'Founder', period: 'Mar 2026 – present' }],
     blurb:
       'An AI-lab exploration of new technologies, like the deployment of local agents, to advance how we work with agents.',
     showcase: {
