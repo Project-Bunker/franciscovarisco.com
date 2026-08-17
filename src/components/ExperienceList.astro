@@ -11,7 +11,13 @@ const { items } = Astro.props
         <img class="xp-logo" src={x.logo} alt="" width="44" height="44" />
         <div class="xp-body">
           <div class="xp-company">
-            {x.href ? <a href={x.href}>{x.company}</a> : x.company}
+            {x.href ? (
+              <a href={x.href} target="_blank" rel="noreferrer">
+                {x.company}
+              </a>
+            ) : (
+              x.company
+            )}
           </div>
           <ul class="xp-roles">
             {x.roles.map((r) => (
