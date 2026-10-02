@@ -144,6 +144,13 @@ export const sideProjects = [
 
 export const life = [
   {
+    title: 'SF found another gear',
+    blurb:
+      'Back in San Francisco, and the pace felt even faster. Everyone was debating whether to pace the frontier, personal agents are starting to feel normal, and data labs are popping up everywhere while the AI labs are still starved for good human data. When New York is the slower option, that tells you something about SF.',
+    img: '/cards/sf-tenth-gear.jpg',
+    href: 'https://www.linkedin.com/feed/update/urn:li:activity:7511306675140628480/',
+  },
+  {
     title: 'Go where the frontier is',
     blurb:
       '2.5 weeks in San Francisco, the AI capital of the world: 37 in-person meetings, five meetups and GTC. Nobody knows where this is going, but the window for high-quality human data is wide open. Be the worst student in the class; it’s an evolution shortcut.',
