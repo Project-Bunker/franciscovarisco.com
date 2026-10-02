@@ -9,17 +9,18 @@ import { getPublishedPosts } from '../data/posts.js'
 
 const posts = await getPublishedPosts()
 
-// Blog posts join the curated life cards; the life entries carry no dates,
-// so posts (newest first) lead the scroller.
+// Blog posts join the curated life cards, and the whole feed runs newest
+// first by publish date.
 const lifeFeed = [
   ...posts.map((post) => ({
     title: post.data.title,
     blurb: post.data.description,
     img: post.data.image,
     href: `/blog/${post.id}/`,
+    date: post.data.pubDate,
   })),
-  ...life,
-]
+  ...life.map((item) => ({ ...item, date: new Date(item.date) })),
+].sort((a, b) => b.date - a.date)
 ---
 
 <BaseLayout>

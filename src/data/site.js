@@ -149,6 +149,7 @@ export const life = [
       'Back in San Francisco, and the pace felt even faster. Everyone was debating whether to pace the frontier, personal agents are starting to feel normal, and data labs are popping up everywhere while the AI labs are still starved for good human data. When New York is the slower option, that tells you something about SF.',
     img: '/cards/sf-tenth-gear.jpg',
     href: 'https://www.linkedin.com/feed/update/urn:li:activity:7511306675140628480/',
+    date: '2026-10-01',
   },
   {
     title: 'Go where the frontier is',
@@ -156,6 +157,7 @@ export const life = [
       '2.5 weeks in San Francisco, the AI capital of the world: 37 in-person meetings, five meetups and GTC. Nobody knows where this is going, but the window for high-quality human data is wide open. Be the worst student in the class; it’s an evolution shortcut.',
     img: '/cards/sf-golden-gate.jpg',
     href: 'https://www.linkedin.com/feed/update/urn:li:activity:7442677309029052416/',
+    date: '2026-03-25',
   },
   {
     title: 'Always-on agents are the future',
@@ -163,6 +165,7 @@ export const life = [
       'The beginning of Paradise Bunker: a Mac Studio running local models 24/7 with a research assistant that delivers insights proactively, an investment agent, and a coding agent that ships while I sleep. The people building this infrastructure now will shape how work gets done.',
     img: '/cards/paradise-bunker-start.jpg',
     href: 'https://www.linkedin.com/feed/update/urn:li:activity:7463381520309743616/',
+    date: '2026-05-22',
   },
   {
     title: 'UXDX in Dublin',
@@ -170,6 +173,7 @@ export const life = [
       'Crossed the world with the Askable team for UXDX in Dublin — booth, espresso machine and all. Conferences are a source of inspiration and new ideas, and nothing beats meeting the people you build for face to face.',
     img: '/cards/uxdx-dublin.jpg',
     href: 'https://www.linkedin.com/posts/xicovarisco_uxdx-conferences-userresearch-activity-7249679787143671808-skM9',
+    date: '2024-10-09',
   },
   {
     title: 'Mentoring at HotHack',
@@ -178,6 +182,7 @@ export const life = [
     img: '/cards/hothack.jpg',
     imgPos: 'center 18%',
     href: 'https://www.linkedin.com/posts/xicovarisco_techevent-hackathon-mentoring-activity-7155042200718872576-iMJG/',
+    date: '2024-01-22',
   },
 ]
 
