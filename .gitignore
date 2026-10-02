@@ -4,3 +4,7 @@ dist
 .DS_Store
 *.local
 .vercel
+
+# Working files (not deployed)
+design/
+notes/
